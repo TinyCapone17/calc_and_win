@@ -27,34 +27,36 @@ def compare_valumes(enemy_health, user_total_attack):
 def get_user_attack():
     total = 0
     attacks_types = {
-        'lite': get_lite_attack,
-        'mid': get_mid_attack,
-        'hard': get_hard_attack,
+        "lite": get_lite_attack,
+        "mid": get_mid_attack,
+        "hard": get_hard_attack,
     }
 
     for i in range(5):
-        input_attack = input('Введи тип атаки: ').lower()
+        input_attack = input("Введи тип атаки: ").lower()
         attack_value = attacks_types[input_attack]()
-        print(f'Количество очков твоей атаки: {attack_value}.')
-        total += 1
+        print(f"Количество очков твоей атаки: {attack_value}.")
+        total += attack_valuemid
     return total
 
 
 def run_game():
     user_total_attack = get_user_attack()
     enemy_health = set_enemy_health()
-    print(f'Тобой нанесён урон противнику равный {user_total_attack}.')
-    print(f'Очки здоровья противника до твоей атаки: {enemy_health}.')
+    print(f"Тобой нанесён урон противнику равный {user_total_attack}.")
+    print(f"Очки здоровья противника до твоей атаки: {enemy_health}.")
     if compare_valumes(enemy_health, user_total_attack):
-        print('Ура! Победа за тобой!')
+        print("Ура! Победа за тобой!")
     else:
-        print('В этот раз не повезло :( Бой проигран.')
+        print("В этот раз не повезло :( Бой проигран.")
     yes_no = {
-        'Y': True,
-        'N': False,
+        "y": True,
+        "n": False,
     }
-    replay = input('Чтобы сыграть ещё раз, введи "y"; '
-                   'если не хочешь продолжать игру, введи "n": ')
+    replay = input(
+        'Чтобы сыграть ещё раз, введи "y"; '
+        'если не хочешь продолжать игру, введи "n": '
+    )
     if replay not in yes_no:
-        raise ValueError('Такой команды в игре нет.')
+        raise ValueError("Такой команды в игре нет.")
     return yes_no[replay]
